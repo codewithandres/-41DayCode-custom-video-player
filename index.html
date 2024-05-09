@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,41 @@
 </head>
 
 <body>
-    
+    <div class="container">
+        <div class="wrapper">
+            <div class="video-time-line">
+                <div class="progres-area">
+                    <span>00:00</span>
+                    <div class="progres-bar"></div>
+                </div>
+            </div>
+            <ul class="video-controls">
+
+                <li class="options left">
+                    <button class="volume"> <i class="ri-volume-up-line"></i> </button>
+                    <input type="range">
+                    <div class="video-timer">
+                        <p class="cirrent-time">00:00</p>
+                        <p class="separator"> / </p>
+                        <p class="video-duration">00:00</p>
+                    </div>
+                </li>
+
+                <li class="options center">
+                    <button class="skip-backward"><i class="ri-skip-back-line"></i></button>
+                    <button class="play-pause"><i class="ri-play-large-line"></i></button>
+                    <button class="skip-formkward"><i class="ri-skip-forward-line"></i></button>
+                </li>
+
+                <li class="options right">
+                    <button class="play-back-sped"><i class="ri-speed-line"></i></button>
+                    <button class="pic-in-pic"><i class="ri-slow-down-line"></i></button>
+                    <button class="fullscreen"><i class="ri-expand-diagonal-line"></i></button>
+                </li>
+            </ul>
+        </div>
+        <video src="video/852421-hd_1920_1080_30fps.mp4" controls></video>
+    </div>
 </body>
 
 </html>
