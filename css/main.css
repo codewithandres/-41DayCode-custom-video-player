@@ -93,6 +93,7 @@ body,
 
 .progress-area .progress-bar {
     width: 0%;
+    transition: width 200ms linear;
     height: 100%;
     position: relative;
     background: #2289ff;
