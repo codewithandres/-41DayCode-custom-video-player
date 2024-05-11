@@ -1,54 +1,67 @@
 <!DOCTYPE html>
-<html lang="es">
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom video player | Dize Design</title>
-    <!-- remix icon -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <!-- custom css -->
+    <meta charset="utf-8">
+    <title>Custom Video Player in JavaScript | CodingNepal</title>
     <link rel="stylesheet" href="css/main.css">
-    <!-- custom js -->
-    <script type="module" src="js/app.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- These 3 links are only for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- custom JS -->
+    <script type="module" src="script.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container show-controls">
         <div class="wrapper">
-            <div class="video-time-line">
-                <div class="progres-area">
+            <div class="video-timeline">
+                <div class="progress-area">
                     <span>00:00</span>
-                    <div class="progres-bar"></div>
+                    <div class="progress-bar"></div>
                 </div>
             </div>
             <ul class="video-controls">
-
                 <li class="options left">
-                    <button class="volume"> <i class="ri-volume-up-line"></i> </button>
-                    <input type="range">
+                    <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
+                    <input type="range" min="0" max="1" step="any">
                     <div class="video-timer">
-                        <p class="cirrent-time">00:00</p>
+                        <p class="current-time">00:00</p>
                         <p class="separator"> / </p>
                         <p class="video-duration">00:00</p>
                     </div>
                 </li>
-
                 <li class="options center">
-                    <button class="skip-backward"><i class="ri-skip-back-line"></i></button>
-                    <button class="play-pause"><i class="ri-play-large-line"></i></button>
-                    <button class="skip-formkward"><i class="ri-skip-forward-line"></i></button>
+                    <button class="skip-backward"><i class="fas fa-backward"></i></button>
+                    <button class="play-pause"><i class="fas fa-play"></i></button>
+                    <button class="skip-forward"><i class="fas fa-forward"></i></button>
                 </li>
-
                 <li class="options right">
-                    <button class="play-back-sped"><i class="ri-speed-line"></i></button>
-                    <button class="pic-in-pic"><i class="ri-slow-down-line"></i></button>
-                    <button class="fullscreen"><i class="ri-expand-diagonal-line"></i></button>
+                    <div class="playback-content">
+                        <button class="playback-speed"><span
+                                class="material-symbols-rounded">slow_motion_video</span></button>
+                        <ul class="speed-options">
+                            <li data-speed="2">2x</li>
+                            <li data-speed="1.5">1.5x</li>
+                            <li data-speed="1" class="active">Normal</li>
+                            <li data-speed="0.75">0.75x</li>
+                            <li data-speed="0.5">0.5x</li>
+                        </ul>
+                    </div>
+                    <button class="pic-in-pic"><span class="material-icons">picture_in_picture_alt</span></button>
+                    <button class="fullscreen"><i class="fa-solid fa-expand"></i></button>
                 </li>
             </ul>
         </div>
-        <video src="video/852421-hd_1920_1080_30fps.mp4" controls></video>
+        <video src="video/852421-hd_1920_1080_30fps.mp4"></video>
     </div>
+
+
+
 </body>
 
 </html>
