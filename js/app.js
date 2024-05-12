@@ -2,14 +2,15 @@
 const container = document.querySelector('.container'),
     mainVideo = document.querySelector('video'),
     playPauseBtn = document.querySelector('.play-pause i'),
-    progresBar = document.querySelector('.progress-bar'),
-    skipBackWard = document.querySelector('.skip-backward i'),
-    skipForWard = document.querySelector('.skip-forward i'),
-    volumenBtn = document.querySelector('.volume i'),
-    volumenSlider = document.querySelector('.left input'),
-    speedBtn = document.querySelector('.playback-speed span'),
-    speedOptions = document.querySelector('.speed-options'),
-    picInpicBtn = document.querySelector('.pic-in-pic span');
+    progresBar = container.querySelector('.progress-bar'),
+    skipBackWard = container.querySelector('.skip-backward i'),
+    skipForWard = container.querySelector('.skip-forward i'),
+    volumenBtn = container.querySelector('.volume i'),
+    volumenSlider = container.querySelector('.left input'),
+    speedBtn = container.querySelector('.playback-speed span'),
+    speedOptions = container.querySelector('.speed-options'),
+    picInpicBtn = container.querySelector('.pic-in-pic span'),
+    fullScreenBtn = container.querySelector('.fullscreen i');
 
 mainVideo.addEventListener('timeupdate', e => {
 
@@ -53,6 +54,17 @@ volumenSlider.addEventListener('input', e => {
         option.classList.add('active');
 
     });
+});
+
+fullScreenBtn.addEventListener('click', () => {
+    container.classList.toggle('fullscreen');
+
+    if (document.fullscreenElement) {
+        fullScreenBtn.classList.replace('fa-compress', 'fa-expand');
+        return document.exitFullscreen;
+    }
+    fullScreenBtn.classList.replace('fa-expand', 'fa-compress');
+    container.requestFullscreen;
 });
 
 picInpicBtn.addEventListener('click', () => {
