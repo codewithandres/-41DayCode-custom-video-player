@@ -24,10 +24,11 @@ const formatTime = time => {
     minutes = minutes < 10 ? `0${minutes}` : minutes
     hours = hours < 10 ? `0${hours}` : hours
 
-    if (hours == 0)`${minutes}:${seconds}`;
+    if (hours == 0) return `${minutes}:${seconds}`;
 
     return `${hours}:${minutes}:${seconds}`;
 };
+
 
 mainVideo.addEventListener('timeupdate', e => {
 
@@ -43,9 +44,9 @@ mainVideo.addEventListener('loadeddata', (e) => {
     videoDuration.textContent = formatTime(duration);
 });
 
-videoTimeLine.addEventListener('click', e => {
-    const { clientWidth } = e.target;
-    let timeLineWidth = clientWidth;
+videoTimeLine.addEventListener('click', (e) => {
+
+    let timeLineWidth = videoTimeLine.clientWidth;
     mainVideo.currentTime = (e.offsetX / timeLineWidth) * mainVideo.duration;
 });
 
@@ -62,7 +63,7 @@ volumenBtn.addEventListener('click', () => {
     volumenSlider.value = mainVideo.volume;
 });
 
-volumenSlider.addEventListener('input', e => {
+volumenSlider.addEventListener('input', (e) => {
 
     const { value } = e.target;
     mainVideo.volume = value;
@@ -96,6 +97,35 @@ fullScreenBtn.addEventListener('click', () => {
     container.requestFullscreen;
 });
 
+const dragableProgresBar = (e) => {
+    const { offsetX } = e;
+    let timeLineWidth = videoTimeLine.clientWidth;
+
+    progresBar.style.width = `${offsetX}px`;
+    mainVideo.currentTime = (offsetX / timeLineWidth) * mainVideo.duration;
+    currentVideoTime.textContent = formatTime(mainVideo.currentTime);
+};
+
+videoTimeLine.addEventListener('mousemove', e => {
+
+    const { offsetX } = e;
+    const progressTime = videoTimeLine.querySelector('span');
+    let offsetx = offsetX;
+    let timeLineWidth = videoTimeLine.clientWidth;
+    let percent = (offsetX / timeLineWidth) * mainVideo.duration;
+
+    progressTime.style.left = `${offsetx}px`;
+    progressTime.textContent = formatTime(percent);
+});
+
+videoTimeLine.addEventListener('mousedown', () => {
+    videoTimeLine.addEventListener('mousemove', dragableProgresBar);
+});
+
+container.addEventListener('mouseup', () => {
+    videoTimeLine.removeEventListener('mousemove', dragableProgresBar);
+});
+
 picInpicBtn.addEventListener('click', () => {
     mainVideo.requestPictureInPicture();
 });
@@ -104,7 +134,7 @@ speedBtn.addEventListener('click', () => {
     speedOptions.classList.toggle('show');
 });
 
-document.addEventListener('click', e => {
+document.addEventListener('click', (e) => {
     const { tagName, className } = e.target;
     if (tagName !== 'SPAN' || className !== 'material-symbols-rounded') {
         speedOptions.classList.remove('show');
