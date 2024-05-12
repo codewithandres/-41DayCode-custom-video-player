@@ -10,7 +10,24 @@ const container = document.querySelector('.container'),
     speedBtn = container.querySelector('.playback-speed span'),
     speedOptions = container.querySelector('.speed-options'),
     picInpicBtn = container.querySelector('.pic-in-pic span'),
-    fullScreenBtn = container.querySelector('.fullscreen i');
+    fullScreenBtn = container.querySelector('.fullscreen i'),
+    videoTimeLine = container.querySelector('.video-timeline'),
+    currentVideoTime = container.querySelector('.current-time'),
+    videoDuration = container.querySelector('.video-duration');
+
+const formatTime = time => {
+    let seconds = Math.floor(time % 60),
+        minutes = Math.floor(time / 60) % 60,
+        hours = Math.floor(time / 3600);
+
+    seconds = seconds < 10 ? `0${seconds}` : seconds
+    minutes = minutes < 10 ? `0${minutes}` : minutes
+    hours = hours < 10 ? `0${hours}` : hours
+
+    if (hours == 0)`${minutes}:${seconds}`;
+
+    return `${hours}:${minutes}:${seconds}`;
+};
 
 mainVideo.addEventListener('timeupdate', e => {
 
@@ -18,6 +35,18 @@ mainVideo.addEventListener('timeupdate', e => {
     let percent = (currentTime / duration) * 100;
 
     progresBar.style.width = `${percent}%`;
+    currentVideoTime.textContent = formatTime(currentTime);
+});
+
+mainVideo.addEventListener('loadeddata', (e) => {
+    const { duration } = e.target;
+    videoDuration.textContent = formatTime(duration);
+});
+
+videoTimeLine.addEventListener('click', e => {
+    const { clientWidth } = e.target;
+    let timeLineWidth = clientWidth;
+    mainVideo.currentTime = (e.offsetX / timeLineWidth) * mainVideo.duration;
 });
 
 volumenBtn.addEventListener('click', () => {
