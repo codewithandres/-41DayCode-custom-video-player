@@ -44,6 +44,16 @@ volumenSlider.addEventListener('input', e => {
 
 });
 
+[...speedOptions.querySelectorAll('li')].map(option => {
+    option.addEventListener('click', () => {
+
+        mainVideo.playbackRate = option.dataset.speed;
+        speedOptions.querySelector('.active').classList.remove('active');
+        option.classList.add('active');
+
+    });
+});
+
 speedBtn.addEventListener('click', () => {
     speedOptions.classList.toggle('show');
 });
