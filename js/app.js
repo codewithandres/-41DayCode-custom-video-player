@@ -8,7 +8,8 @@ const container = document.querySelector('.container'),
     volumenBtn = document.querySelector('.volume i'),
     volumenSlider = document.querySelector('.left input'),
     speedBtn = document.querySelector('.playback-speed span'),
-    speedOptions = document.querySelector('.speed-options');
+    speedOptions = document.querySelector('.speed-options'),
+    picInpicBtn = document.querySelector('.pic-in-pic span');
 
 mainVideo.addEventListener('timeupdate', e => {
 
@@ -52,6 +53,10 @@ volumenSlider.addEventListener('input', e => {
         option.classList.add('active');
 
     });
+});
+
+picInpicBtn.addEventListener('click', () => {
+    mainVideo.requestPictureInPicture();
 });
 
 speedBtn.addEventListener('click', () => {
